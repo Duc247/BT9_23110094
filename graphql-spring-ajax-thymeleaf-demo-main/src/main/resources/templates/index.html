@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hệ thống Quản lý GraphQL</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-actions">
+            <h1>Hệ thống Quản lý (CRUD Full)</h1>
+            <a href="/graphiql" target="_blank" class="btn btn-tool">Mở GraphiQL Tool</a>
+        </div>
+
+        <div class="tab-header">
+            <button class="tab-btn active" onclick="openTab('products')">Sản Phẩm</button>
+            <button class="tab-btn" onclick="openTab('categories')">Danh Mục</button>
+            <button class="tab-btn" onclick="openTab('users')">Người Dùng</button>
+        </div>
+
+        <div id="products" class="tab-content active">
+            <div class="form-section">
+                <h3 class="form-title" id="p-form-title">Thêm Sản Phẩm Mới</h3>
+                <input type="hidden" id="p-id">
+                <div class="input-group">
+                    <input type="text" id="p-title" placeholder="Tên sản phẩm">
+                    <input type="number" id="p-price" placeholder="Giá">
+                    <input type="number" id="p-qty" placeholder="Số lượng" value="10">
+                    <input type="text" id="p-desc" placeholder="Mô tả">
+                    <input type="number" id="p-catId" placeholder="ID Danh mục">
+                    <input type="number" id="p-userId" placeholder="ID Người bán" value="1">
+                </div>
+                <div style="text-align: right;">
+                    <button class="btn btn-warning" onclick="resetProductForm()" style="display:none;" id="p-cancel-btn">Hủy sửa</button>
+                    <button class="btn btn-success" onclick="saveProduct()">Lưu Sản Phẩm</button>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="loadProducts()">Tải danh sách</button>
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Tên</th><th>Giá</th><th>Danh mục</th><th>Thao tác</th></tr>
+                </thead>
+                <tbody id="p-table"></tbody>
+            </table>
+        </div>
+
+        <div id="categories" class="tab-content">
+            <div class="form-section">
+                <h3 class="form-title" id="c-form-title">Thêm Danh Mục</h3>
+                <input type="hidden" id="c-id">
+                <div class="input-group">
+                    <input type="text" id="c-name" placeholder="Tên danh mục (VD: Laptop)">
+                    <input type="text" id="c-images" placeholder="URL Ảnh">
+                </div>
+                <div style="text-align: right;">
+                    <button class="btn btn-warning" onclick="resetCategoryForm()" style="display:none;" id="c-cancel-btn">Hủy sửa</button>
+                    <button class="btn btn-success" onclick="saveCategory()">Lưu Danh Mục</button>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="loadCategories()">Tải danh sách</button>
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Tên danh mục</th><th>Ảnh</th><th>Thao tác</th></tr>
+                </thead>
+                <tbody id="c-table"></tbody>
+            </table>
+        </div>
+
+        <div id="users" class="tab-content">
+            <div class="form-section">
+                <h3 class="form-title" id="u-form-title">Thêm Người Dùng</h3>
+                <input type="hidden" id="u-id">
+                <div class="input-group">
+                    <input type="text" id="u-fullname" placeholder="Họ và tên">
+                    <input type="email" id="u-email" placeholder="Email">
+                    <input type="text" id="u-phone" placeholder="Số điện thoại">
+                    <input type="password" id="u-pass" placeholder="Mật khẩu">
+                </div>
+                <div style="text-align: right;">
+                    <button class="btn btn-warning" onclick="resetUserForm()" style="display:none;" id="u-cancel-btn">Hủy sửa</button>
+                    <button class="btn btn-success" onclick="saveUser()">Lưu User</button>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="loadUsers()">Tải danh sách</button>
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Họ tên</th><th>Email</th><th>SĐT</th><th>Thao tác</th></tr>
+                </thead>
+                <tbody id="u-table"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
